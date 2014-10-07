@@ -1,0 +1,9 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/home/jasane/projects/Backpackers/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js",
+        "/home/jasane/projects/Backpackers/platforms/android/assets/www/cordova_plugins.js",
+        "/home/jasane/projects/Backpackers/platforms/android/assets/www/cordova.js",
+        "/home/jasane/projects/Backpackers/www/js/openfb-angular.js",
+        "/home/jasane/projects/Backpackers/gulpfile.js"
+    ]
+}

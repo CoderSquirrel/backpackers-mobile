@@ -1,0 +1,23 @@
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes.dex : \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/com/ionicframework/backpackers256025/Backpackers.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/com/ionicframework/backpackers256025/R$drawable.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/com/ionicframework/backpackers256025/R$xml.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/com/ionicframework/backpackers256025/R$attr.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/com/ionicframework/backpackers256025/R$string.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/com/ionicframework/backpackers256025/BuildConfig.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/com/ionicframework/backpackers256025/R.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$InAppBrowserClient.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppChromeClient.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$4.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$4.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$3.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$2.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$2.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$4$1.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$1.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$3.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowserDialog.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$1.class \
+/home/jasane/projects/Backpackers/platforms/android/ant-build/dexedLibs/classes-ebca662c6551eba3814965b4dbd35a6a.jar \
