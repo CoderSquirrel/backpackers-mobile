@@ -1,0 +1,18 @@
+   <ion-view title="'Map'" left-buttons="leftButtons">
+<ion-content has-header="true" scroll="false">
+
+<!-- map directive-->
+<app-map style="height:90%;margin:2px;"
+    center="basel"
+    zoom="15"
+    markers="whoiswhere"
+  > 
+</app-map>
+
+</ion-content>
+<div class="bar bar-footer" >
+  <a class="button button-positive">Calc Trip</a>
+  
+  <a class="button button-assertive" onclick="clearMarks()">Erase Marks</a>
+</div>
+</ion-view>
