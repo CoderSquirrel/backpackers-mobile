@@ -1,4 +1,4 @@
-<ion-view title="'My Reviews'" left-buttons="leftButtons">
+<ion-view title="'My Reviews'" left-buttons="leftButtons" right-buttons="reviewButtons">
 <ion-content has-header="true">
 <!--
 <div class="card" id="topofpage">
@@ -9,12 +9,13 @@
 -->
 <!--</div>-->
 	<center>
-<h3>Trending cities</h3>
 		</center>
 	<ion-list>
-            <ion-item ng-repeat="city in cities" ng-click="cityInfo({{city.id_city}})">
+            <ion-item ng-repeat="city in citiesReviews" ng-click="cityInfo({{city.id_city}} )">
+				
                 {{city.name}}<br/>
-				{{city.country_name}} - {{city.country_iso_2}} - {{city.continent}}<br />	
+				{{city.country_name}}<br />	
+				
 				
             </ion-item>
 		

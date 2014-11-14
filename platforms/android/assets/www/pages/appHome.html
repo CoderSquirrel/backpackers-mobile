@@ -8,10 +8,11 @@
   </div>
 -->
 <!--</div>-->
-	<center>
-<h3>Trending cities</h3>
-		</center>
+
 	<ion-list>
+			<center>
+				<h3>Trending cities</h3>
+		</center>
             <ion-item ng-repeat="city in cities" ng-click="cityInfo({{city.id_city}})">
                 {{city.name}}<br/>
 				{{city.country_name}} - {{city.country_iso_2}} - {{city.continent}}<br />

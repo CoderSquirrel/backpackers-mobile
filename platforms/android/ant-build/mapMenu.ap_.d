@@ -44,11 +44,17 @@
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appTrips.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appReviews.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appCityInfo.html \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appCreateReview.html \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appRegister.html \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appCityInfoReview.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appList.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appHome.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appMap.html \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appMapCalc.html \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appLogout.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appWishlist.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/menu.html \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appLogin.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/img/logo96.png \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/img/ionic.png \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/plugins/com.ionic.keyboard \

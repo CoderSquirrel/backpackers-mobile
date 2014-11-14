@@ -8,7 +8,7 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
-    <name>mapMenu</name>
+    <name>Backpacker</name>
     <description>
         An Ionic Framework and Cordova project.
     </description>

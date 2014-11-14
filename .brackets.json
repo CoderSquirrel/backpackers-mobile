@@ -1,16 +1,10 @@
 {
     "jscodehints.detectedExclusions": [
-        "/home/jasane/projects/mapMenu/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js",
-        "/home/jasane/projects/mapMenu/hooks/after_prepare/010_add_platform_class.js",
-        "/home/jasane/projects/mapMenu/www/lib/ionic/js/ionic.js",
-        "/home/jasane/projects/mapMenu/www/js/gmaps.js",
         "/home/jasane/projects/bkpck2/gulpfile.js",
         "/home/jasane/projects/bkpck2/hooks/after_prepare/010_add_platform_class.js",
-        "/home/jasane/projects/bkpck2/www/lib/ionic/js/ionic.js",
-        "/home/jasane/projects/bkpck2/www/lib/ionic/js/ionic-angular.js",
-        "/home/jasane/projects/bkpck2/www/lib/ionic/js/ionic.bundle.js",
-        "/home/jasane/projects/bkpck2/www/lib/ionic/js/ionic.min.js",
         "/home/jasane/projects/bkpck2/www/lib/js/ionic.js",
-        "/home/jasane/projects/bkpck2/www/js/app.js"
+        "/home/jasane/projects/bkpck2/www/lib/js/ionic-angular.js",
+        "/home/jasane/projects/bkpck2/www/lib/js/ionic.bundle.js",
+        "/home/jasane/projects/bkpck2/www/lib/js/ionic.min.js"
     ]
 }
