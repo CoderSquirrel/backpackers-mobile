@@ -2,28 +2,15 @@
 
 Backpackers app is an Web Mobile App developed using Ionic Framework.
 
-### What is this repository for? ###
+### Technologies ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Ionic Framework
+* Javascript
+* AngularJS
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### API's ###
 
-### Contribution guidelines ###
+* Google Maps API
+* Backpackers API
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
