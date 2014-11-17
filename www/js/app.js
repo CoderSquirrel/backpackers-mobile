@@ -267,7 +267,6 @@ BkpkApp.controller('ProfileCtrl', function($scope, $http) {
 
 BkpkApp.controller('CalcCtrl', function($scope, $http) {
     var calcCidades = [];
-    markedCities = [];
     for (var i = 0; i < markedCities.length; i++) {
         var isB = false;
         var cidade, pais;
@@ -277,6 +276,7 @@ BkpkApp.controller('CalcCtrl', function($scope, $http) {
         $http.get(url).success(function(data) {
             console.log(data.result);
             calcCidades.push(data.result[0]);
+			console.log(data.result[0]);
 
         });
     }
@@ -561,6 +561,7 @@ BkpkApp.controller('GpsCtrl', ['$scope', '$ionicPlatform', '$location',
     function($scope, $ionicPlatform, $location) {
 
 
+		markedCities = [];
         // init gps array
         $scope.whoiswhere = [];
         $scope.basel = {
@@ -670,6 +671,7 @@ BkpkApp.directive("appMap", function($window, $http) {
     $window.calcTrip = function() {
         for (var i = 0; i < markersList.length; i++) {
             markedCities = markersList;
+			console.log(markersList[i].position.lat() );
             window.location.href = '#/app/calc';
             //  				  var m = markersList[i];
             //  		console.log(m);
