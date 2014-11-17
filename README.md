@@ -1,6 +1,6 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Backpackers app is an Web Mobile App developed using Ionic Framework.
 
 ### What is this repository for? ###
 
