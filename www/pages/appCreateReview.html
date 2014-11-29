@@ -1,46 +1,28 @@
-<ion-view title="'Create Review'" left-buttons="leftButtons" right-buttons="reviewButtons">
-<ion-content has-header="true">
-<div class="card" id="topofpage"  ng-controller="CreateReviewCtrl">
-	<div class="item item-divider">
-	<label class="item item-input">
-	   <i id="ckeck1" class="icon ion-compose"></i> <input type="text" style ="border-radius: 8px" ng-model="city" placeholder="City" />
-	  </label>
-	  <p></p>
-	  <label class="item item-input">  
-			<i id="ckeck2" class="icon ion-compose"></i><input type="text" style ="border-radius: 8px" ng-model="country" placeholder="Country" /></label>
+<ion-view title="'Details'" left-buttons="leftButtons">
 
-	   <p></p>
-	<div class="list">
+    <ion-content has-header="true" padding="true">
+        <div class="card" id="topofpage">
 
-	<label class="item item-input item-select">
-	<div class="input-label">
-	  Continent
-	</div>
-	<select ng-model="continent">
-	
-	  <option>Asia</option>
-	  <option >Africa</option>
-	  <option>North America</option>
-	<option>South America</option>
-		<option>Antarctica</option>
-		<option>Europe</option>
-		<option>Australia/Oceania</option>
-	</select>
-	
-		 
+            <h4>{{city.name}}</h4>
+            <h5>Country: {{city.country_name}} -  {{city.country_iso_2}}</h5>
+            <h5>Alias: {{city.alias}}</h5>
+            <h5>Continent: {{city.continent}}</h5>
+            <h5>Latitude: {{city.latitude}}</h5>
+            <h5>Longitude: {{city.longitude}}</h5>
+            <h5>Description: {{city.description}}</h5>
 
-	</label>
-	</div>
+        </div>
 
-		<button class="button button-balanced"style ="border-radius: 8px" style="display: block" ng-click="search()" menu-close>Search</button>
-		
+        <div class="item item-divider">Review | {{review}}</div>
+        <div class="item range range-positive">
 
-<span class="input-label" ng-model="label" >{{label}}</span>
+            0
+            <input type="range" name="volume" min="0" max="5" ng-model="review" >5
 
- 	</div> 
-	<div id="cityList" ng-bind-html="cityList"></div>
-	</div>
-	 
+        </div>
+<br />
+        <button class="button button-balanced" style="border-radius: 8px" style="display: block" ng-click="create()" menu-close>Save Review</button>
 
-	</ion-content>
+    </ion-content>
+
 </ion-view>

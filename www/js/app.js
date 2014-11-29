@@ -1,6 +1,6 @@
 'use strict';
 var BkpkApp = angular.module('BkpkApp', ['ionic']);
-var myUrl, thisCity, idCity;
+var myUrl, thisCity, idCity, reviewCity;
 var myCities = [];
 var cityName;
 var markedCities = [];
@@ -90,6 +90,15 @@ BkpkApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
                 }
             }
         })
+        .state('app.Reviewlist', {
+            url: '/Reviewlist',
+            views: {
+                'menuContent': {
+                    templateUrl: 'pages/appReviewList.html',
+                    controller: 'ReviewListCtrl'
+                }
+            }
+        })
         .state('app.trips', {
             url: '/trips',
             views: {
@@ -143,12 +152,21 @@ BkpkApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
                 }
             }
         })
-	.state('app.createReview', {
+        .state('app.createReview', {
             url: '/createReview',
             views: {
                 'menuContent': {
                     templateUrl: 'pages/appCreateReview.html',
                     controller: 'CreateReviewCtrl'
+                }
+            }
+        })
+        .state('app.searchCityForReview', {
+            url: '/searchCityForReview',
+            views: {
+                'menuContent': {
+                    templateUrl: 'pages/appSearchCityForReview.html',
+                    controller: 'SearchCityForReviewCtrl'
                 }
             }
         })
@@ -167,7 +185,95 @@ BkpkApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
     $urlRouterProvider.otherwise('/app/home');
 }]);
 
+BkpkApp.controller('HeaderCtrl', function($scope) {
+    if (window.localStorage['apiKey'] == 'null' || window.localStorage['apiKey'] == null || window.localStorage['apiKey'] == "") {
+        console.log("ta vazio");
+        // alert("empty red");
+        //		   $state.go('app.login');
+        window.location.href = '#/app/login';
+    } else {
+        //    	   	console.log(window.localStorage['apiKey']);
+        //    	   alert(window.localStorage['apiKey']);
+    }
+    //console.log();
+    // Main app controller, empty for the example
+    $scope.leftButtons = [{
+        type: 'button-clear',
+        content: '<i class="icon ion-navicon"></i>',
+        tap: function(e) {
+            $scope.sideMenuController.toggleLeft();
+        }
+    }];
+    $scope.addRighButtons = [{
+        type: 'button-small',
+        content: '<i class="icon ion-plus-round"></i>',
+        tap: function(e) {
+            $scope.sideMenuController.toggleRight();
+            var sizeAf = myCities.length;
+            console.log(thisCity);
+            myCities.push(thisCity);
+            console.log(myCities);
+            alert("City added to your wish list");
 
+        }
+    }];
+
+    $scope.wishButtons = [{
+        type: 'button-small',
+        content: '<i class="icon ion-star"></i>',
+        tap: function(e) {
+            $scope.sideMenuController.toggleRight();
+            window.location.href = '#/app/myWish'
+            for (var i = 0; i < myCities.length; i++) {
+                console.log(myCities[i]);
+            }
+        }
+    }];
+
+    $scope.reviewButtons = [{
+        type: 'button-small',
+        content: '<i class="icon ion-plus-round"></i>',
+        tap: function(e) {
+            $scope.sideMenuController.toggleRight();
+            window.location.href = '#/app/searchCityForReview'
+        }
+    }];
+});
+/**
+ * MAIN CONTROLLER - handle inapp browser
+ */
+BkpkApp.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
+
+    //    var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/search?params[][continent]=europe&params[][name]=fl&maxItems=7&api_key=' + window.localStorage['apiKey'];
+    //
+    //    $http.get(url).success(function(data) {
+    //        $scope.cities = data.result;
+    //    });
+    //
+    //
+    //    $scope.cityInfo = function(id) {
+    //        idCity = id;
+    //        window.location.href = '#/app/city'
+    //    }
+
+}]);
+
+
+/**
+ * Menu item click directive - intercept, hide menu and go to new location
+ */
+BkpkApp.directive('clickMenulink', function() {
+    return {
+        link: function($scope, element, attrs) {
+            element.on('click', function(scope) {
+                $scope.sideMenuController.toggleLeft();
+            });
+        }
+    }
+});
+/**
+ *	Inicio dos controllers de WishList
+ */
 
 BkpkApp.controller("WiLiCtrl", function($scope, $http) {
     var result;
@@ -207,6 +313,7 @@ BkpkApp.controller("WiLiCtrl", function($scope, $http) {
 
     }
 });
+
 BkpkApp.controller('ListCtrl', function($scope, $http) {
     $http.get(myUrl).success(function(data) {
         if (data.totalNumberOfItems > 0) {
@@ -222,73 +329,6 @@ BkpkApp.controller('ListCtrl', function($scope, $http) {
         window.location.href = '#/app/city';
     }
 });
-
-
-BkpkApp.controller('LogoutCtrl', function($scope, $interval) {
-    $scope.logout = $interval(function() {
-        console.log("logout");
-        window.localStorage['apiKey'] = null;
-        window.location.href = '#/app/login';
-    }, 9000, 2, false);
-
-
-});
-
-
-BkpkApp.controller('ProfileCtrl', function($scope, $http) {
-    $scope.sport = 0;
-    $scope.adventure = 0;
-    $scope.art_and_culture = 0;
-    $scope.entertainment = 0;
-    $scope.landscape = 0;
-    $scope.urban = 0;
-    $scope.about= window.localStorage['apiKey'];
- 	$scope.save = function(){
-			var params = { "params" : { "sport" : $scope.sport, "adventure" : $scope.adventure, "art_and_culture" : $scope.art_and_culture, "entertainment" : $scope.entertainment, "landscape" : $scope.landscape, "urban" : $scope.urban }}
-
-		console.log(window.localStorage['apiKey']);
-		console.log(params);
-		 $http.post('http://backpackers-vsnetwork.rhcloud.com/api/v1/preference?api_key='+window.localStorage['apiKey'], params
-            ).
-            success(function(data) {
-                console.log(data.status);
-			 console.log(data);
-                if (data.status == 'OK') {
-					alert("Preferences saved");
-					console.log(data.result);
-                } 
-
-            });
-	}
-
-});
-
-
-
-BkpkApp.controller('CalcCtrl', function($scope, $http) {
-    var calcCidades = [];
-    for (var i = 0; i < markedCities.length; i++) {
-        var isB = false;
-        var cidade, pais;
-        console.log(markedCities[i].position.lat(), markedCities[i].position.lng());
-        var url = "http://backpackers-vsnetwork.rhcloud.com/api/v1/city/closest?api_key=" + window.localStorage['apiKey'] + "&params[latitude]=" + markedCities[i].position.lat() + "&params[longitude]=" + markedCities[i].position.lng() + "&sensor=true";
-
-        $http.get(url).success(function(data) {
-            console.log(data.result);
-            calcCidades.push(data.result[0]);
-			console.log(data.result[0]);
-
-        });
-    }
-
-    console.log(calcCidades);
-
-    $scope.markedCities = calcCidades;
-
-});
-
-
-
 
 BkpkApp.controller('CityCtrl', function($scope, $http) {
     var name;
@@ -306,6 +346,138 @@ BkpkApp.controller('CityCtrl', function($scope, $http) {
 
     })
 });
+
+BkpkApp.controller('MyWishCtrl', function($scope, $http) {
+    //    $scope.cities = myCities;
+
+    if (myCities.length > 0) {
+        $scope.cities = myCities;
+    } else {
+        $scope.error = "No records found";
+    }
+
+    $scope.cityInfo = function(id) {
+        console.log("citiinfo");
+        idCity = id;
+        window.location.href = '#/app/city';
+    }
+
+});
+
+/**
+ *	Fim dos controllers de WishList
+ */
+
+
+/**
+ *	Inicio dos controllers de Review
+ */
+BkpkApp.controller('ReviewListCtrl', function($scope, $http) {
+    $http.get(myUrl).success(function(data) {
+        if (data.totalNumberOfItems > 0) {
+            $scope.cities = data.result;
+        } else {
+            $scope.error = "No records found";
+        }
+
+    });
+    $scope.cityInfo = function(id) {
+        console.log("citiinfo");
+        idCity = id;
+        window.location.href = '#/app/cityRv';
+    }
+});
+
+BkpkApp.controller('CreateReviewCtrl', function($scope, $http) {
+   	$scope.review = 0;
+	var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/' + reviewCity + '?api_key=' + window.localStorage['apiKey'];
+        $http.get(url).success(function(data) {
+            $scope.city = data.result;
+    	});
+
+	
+	
+	$scope.create = function(){
+		var url = "http://backpackers-vsnetwork.rhcloud.com/api/v1/review?api_key="+window.localStorage['apiKey'];
+		var params = { "params" : { "id_city" :  $scope.city.id_city, "stars" : this.review }};
+	        $http.post(url, params).
+        success(function(data) {
+            if (data.status == 'OK') {
+                alert("Review saved");
+				 window.location.href = '#/app/reviews'
+            }
+
+        });
+		
+		
+		
+	}
+	
+});
+
+BkpkApp.controller('ReviewCtrl', ['$scope', '$http', function($scope, $http) {
+    var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/reviews?api_key=' + window.localStorage['apiKey'];
+    $http.get(url).success(function(data) {
+        $scope.citiesReviews = data.result;
+        citiesReviews = data.result;
+    });
+
+
+    $scope.cityInfo = function(id) {
+        idCity = id;
+        window.location.href = '#/app/cityRv';
+    }
+
+}]);
+
+
+BkpkApp.controller('SearchCityForReviewCtrl', ['$scope', '$http', function($scope, $http) {
+    $scope.search = function() {
+        console.log($scope.city + " - " + $scope.country);
+        if ($scope.city == null || $scope.country == null) {
+            //			console.log("null");
+            if ($scope.city == null) {
+                document.getElementById("ckeck1").className = "icon ion-close-round";
+            }
+
+
+
+            if ($scope.country == null) {
+                document.getElementById("ckeck2").className = "icon ion-close-round";
+            }
+
+        } else {
+            //			console.log("notnull");
+            document.getElementById("loadingIcon").style.visibility = "visible";
+            document.getElementById("ckeck1").className = "icon ion-checkmark-round";
+            document.getElementById("ckeck2").className = "icon ion-checkmark-round";
+            //			console.log($scope.city+" - "+$scope.country+" - "+$scope.continent);
+            var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/search?params[][name]=';
+            var cidade = $scope.city;
+            var pais = $scope.country;
+            var continent = $scope.continent;
+            var thisUrl = url + cidade + "&params[][country_name]=" + pais + "&params[][continent]=" + continent + "&api_key=" + window.localStorage['apiKey'];
+            $http.get(thisUrl).success(function(data) {
+                $scope.searchCities = data.result;
+                document.getElementById("loadingIcon").style.visibility = "hidden";
+
+                if (data.result.length < 1) {
+                    $scope.error = "No records found";
+                }
+                console.log($scope.searchCities);
+            });
+
+            $scope.cityInfo = function(id) {
+               reviewCity = id;
+                window.location.href = "#/app/createReview";
+
+            }
+
+        }
+
+    }
+}]);
+
 
 BkpkApp.controller('CityCtrlRV', function($scope, $http) {
     var end;
@@ -331,23 +503,53 @@ BkpkApp.controller('CityCtrlRV', function($scope, $http) {
 
 
 });
-BkpkApp.controller('MyWishCtrl', function($scope, $http) {
-    //    $scope.cities = myCities;
 
-    if (myCities.length > 0) {
-        $scope.cities = myCities;
-    } else {
-        $scope.error = "No records found";
-    }
+/**
+ *	Fim dos controllers de Review
+ */
 
-    $scope.cityInfo = function(id) {
-        console.log("citiinfo");
-        idCity = id;
-        window.location.href = '#/app/city';
+
+/**
+ *	Inicio dos controllers de Login Logout Registro e Profile
+ */
+
+BkpkApp.controller('ProfileCtrl', function($scope, $http) {
+    $scope.sport = 0;
+    $scope.adventure = 0;
+    $scope.art_and_culture = 0;
+    $scope.entertainment = 0;
+    $scope.landscape = 0;
+    $scope.urban = 0;
+    $scope.key = window.localStorage['apiKey'];
+    console.log($scope.key);
+    //		window.localStorage['apiKey'];
+    $scope.save = function() {
+        var params = {
+            "params": {
+                "sport": $scope.sport,
+                "adventure": $scope.adventure,
+                "art_and_culture": $scope.art_and_culture,
+                "entertainment": $scope.entertainment,
+                "landscape": $scope.landscape,
+                "urban": $scope.urban
+            }
+        }
+
+        console.log(window.localStorage['apiKey']);
+        console.log(params);
+        $http.post('http://backpackers-vsnetwork.rhcloud.com/api/v1/preference?api_key=' + window.localStorage['apiKey'], params).
+        success(function(data) {
+            console.log(data.status);
+            console.log(data);
+            if (data.status == 'OK') {
+                alert("Preferences saved");
+                console.log(data.result);
+            }
+
+        });
     }
 
 });
-
 BkpkApp.controller('LoginCtrl', function($scope, $http) {
     $scope.login = function() {
         if ($scope.user == null || $scope.pass == null) {
@@ -361,17 +563,20 @@ BkpkApp.controller('LoginCtrl', function($scope, $http) {
                 document.getElementById("ckeck2").className = "icon ion-close-round";
             }
         } else {
-            //			console.log($scope.user+" - "+$scope.pass);
+            document.getElementById("ckeck1").className = "icon ion-checkmark-round";
+            document.getElementById("ckeck2").className = "icon ion-checkmark-round";
+            console.log($scope.user + " - " + $scope.pass);
             $http.post('http://backpackers-vsnetwork.rhcloud.com/api/v1/user/authenticate', {
-                'params': {
-                    'username': $scope.user,
-                    'password': $scope.pass
+                "params": {
+                    "username": $scope.user,
+                    "password": $scope.pass
                 }
             }).
             success(function(data) {
                 console.log(data.status);
                 if (data.status == 'OK') {
                     window.localStorage['apiKey'] = data.result.api_key;
+                    window.localStorage['user'] = data.result;
                     window.location.href = '#/app/home';
                 } else {
                     $scope.label = "Username or Password incorrect";
@@ -383,79 +588,6 @@ BkpkApp.controller('LoginCtrl', function($scope, $http) {
 
 });
 
-BkpkApp.controller('HeaderCtrl', function($scope) {
-    if (window.localStorage['apiKey'] == 'null' || window.localStorage['apiKey'] == null || window.localStorage['apiKey'] == "") {
-        console.log("ta vazio");
-        // alert("empty red");
-        //		   $state.go('app.login');
-        window.location.href = '#/app/login';
-    } else {
-        //    	   	console.log(window.localStorage['apiKey']);
-        //    	   alert(window.localStorage['apiKey']);
-    }
-    //console.log();
-    // Main app controller, empty for the example
-    $scope.leftButtons = [{
-        type: 'button-clear',
-        content: '<i class="icon ion-navicon"></i>',
-        tap: function(e) {
-            $scope.sideMenuController.toggleLeft();
-        }
-    }];
-    $scope.addRighButtons = [{
-        type: 'button-small',
-        content: '<i class="icon ion-plus-round"></i>',
-        tap: function(e) {
-            $scope.sideMenuController.toggleRight();
-            var sizeAf = myCities.length;
-            console.log(thisCity);
-            myCities.push(thisCity);
-            console.log(myCities);
-            alert("City added to your wish list");
-
-        }
-    }];
-	
-    $scope.wishButtons = [{
-        type: 'button-small',
-        content: '<i class="icon ion-star"></i>',
-        tap: function(e) {
-            $scope.sideMenuController.toggleRight();
-            window.location.href = '#/app/myWish'
-            for (var i = 0; i < myCities.length; i++) {
-                console.log(myCities[i]);
-            }
-        }
-    }];
-	
-	  $scope.reviewButtons = [{
-        type: 'button-small',
-        content: '<i class="icon ion-plus-round"></i>',
-        tap: function(e) {
-            $scope.sideMenuController.toggleRight();
-            window.location.href = '#/app/createReview'
-        }
-    }];
-});
-/**
- * MAIN CONTROLLER - handle inapp browser
- */
-BkpkApp.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
-
-    var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/search?params[][continent]=europe&params[][name]=fl&maxItems=7&api_key=' + window.localStorage['apiKey'];
-
-    $http.get(url).success(function(data) {
-        $scope.cities = data.result;
-    });
-
-
-    $scope.cityInfo = function(id) {
-        idCity = id;
-        window.location.href = '#/app/city'
-    }
-
-}]);
-
 
 BkpkApp.controller('RegisterCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
 
@@ -464,95 +596,81 @@ BkpkApp.controller('RegisterCtrl', ['$scope', '$http', '$interval', function($sc
         console.log("Username " + $scope.user);
         console.log("Password " + $scope.pass);
 
-		console.log("Calling server..");
+        console.log("Calling server..");
         $http.post('http://backpackers-vsnetwork.rhcloud.com/api/v1/user', {
-                 "params": {
-                    "name": $scope.user,
-                    "username": $scope.user,
-                    "password": $scope.pass,
-                    "email": $scope.email
-                }
+            "params": {
+                "name": $scope.user,
+                "username": $scope.user,
+                "password": $scope.pass,
+                "email": $scope.email
             }
-        ).
-    success(function(data) {
-        console.log(data);
-			console.log(data.status);
-        if (data.status == 'OK') {
-        
-			console.log(data);
+        }).
+        success(function(data) {
+            console.log(data);
+            console.log(data.status);
+            if (data.status == 'OK') {
+
+                console.log(data);
+                console.log(data.result);
+                window.localStorage['apiKey'] = data.result.api_key;
+                console.log("API key: " + window.localStorage['apiKey']);
+                $scope.register = $interval(function() {
+                    console.log("registrado");
+                    window.location.href = '#/app/home';
+                }, 2000, 2, false);
+            } else {
+                $scope.label = "Sorry something wrong happened, try again.";
+            }
+            console.log("Close server..");
+        });
+
+
+    }
+
+
+}]);
+
+BkpkApp.controller('LogoutCtrl', function($scope, $interval) {
+    $scope.logout = $interval(function() {
+        console.log("logout");
+        window.localStorage['apiKey'] = null;
+        window.location.href = '#/app/login';
+    }, 9000, 2, false);
+
+
+});
+/**
+ *	Fim dos controllers de Login Logout Registro e Profile
+ */
+
+
+/**
+ *	Inicio dos controllers de Mapa
+ */
+
+
+BkpkApp.controller('CalcCtrl', function($scope, $http) {
+    var calcCidades = [];
+    for (var i = 0; i < markedCities.length; i++) {
+        var isB = false;
+        var cidade, pais;
+        console.log(markedCities[i].position.lat(), markedCities[i].position.lng());
+        var url = "http://backpackers-vsnetwork.rhcloud.com/api/v1/city/closest?api_key=" + window.localStorage['apiKey'] + "&params[latitude]=" + markedCities[i].position.lat() + "&params[longitude]=" + markedCities[i].position.lng() + "&sensor=true";
+
+        $http.get(url).success(function(data) {
             console.log(data.result);
-			window.localStorage['apiKey'] = data.result.api_key;
-			console.log("API key: "+window.localStorage['apiKey']);
-			$scope.register = $interval(function() {
-					console.log("registrado");
-					window.location.href = '#/app/home';
-				}, 2000, 2, false);
-        } else {
-            $scope.label = "Sorry something wrong happened, try again.";
-        }
-console.log("Close server..");
-    });
+            calcCidades.push(data.result[0]);
+            console.log(data.result[0]);
 
-
-}
-
-
-}]);
-
-
-
-
-BkpkApp.controller('ReviewCtrl', ['$scope', '$http', function($scope, $http) {
-    var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/reviews?api_key=' + window.localStorage['apiKey'];
-    $http.get(url).success(function(data) {
-        $scope.citiesReviews = data.result;
-        citiesReviews = data.result;
-    });
-
-
-    $scope.cityInfo = function(id) {
-        idCity = id;
-        window.location.href = '#/app/cityRv';
+        });
     }
 
-}]);
+    console.log(calcCidades);
 
+    $scope.markedCities = calcCidades;
 
-BkpkApp.controller('CreateReviewCtrl', ['$scope', '$http', function($scope, $http) {
- $scope.search = function() {
-        if ($scope.city == null || $scope.country == null) {
-//			console.log("null");
-            if ($scope.city == null) {
-                document.getElementById("ckeck1").className = "icon ion-close-round";
-            }
+});
 
-
-
-            if ($scope.country == null) {
-                document.getElementById("ckeck2").className = "icon ion-close-round";
-            }
-        } else {
-//			console.log("notnull");
-            document.getElementById("ckeck1").className = "icon ion-checkmark-round";
-            document.getElementById("ckeck2").className = "icon ion-checkmark-round";
-//			console.log($scope.city+" - "+$scope.country+" - "+$scope.continent);
-            var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/search?params[][name]=';
-            var cidade = $scope.city;
-            var pais = $scope.country;
-            var continent = $scope.continent;
-            var thisUrl = url + cidade + "&params[][country_name]=" + pais + "&params[][continent]=" + continent + "&api_key=" + window.localStorage['apiKey'];
- $http.get(thisUrl).success(function(data) {
-        $scope.searchCities = data.result;
-	 
-	 
-	 var htmlList = "<div class='item item-divider'><ion-list><ion-item ng-repeat='city in searchCities'><h2>{{city.name}}</h2><p>{{city.alias}}</p></ion-item></ion-list><center><h1>{{error}}</h1></center></div>";
-	 console.log( $scope.searchCities);
-	 $scope.cityList = htmlList;
-    });
-        }
-
-    }
-}]);
 
 /**
  * A google map / GPS controller.
@@ -561,7 +679,7 @@ BkpkApp.controller('GpsCtrl', ['$scope', '$ionicPlatform', '$location',
     function($scope, $ionicPlatform, $location) {
 
 
-		markedCities = [];
+        markedCities = [];
         // init gps array
         $scope.whoiswhere = [];
         $scope.basel = {
@@ -607,13 +725,6 @@ BkpkApp.controller('GpsCtrl', ['$scope', '$ionicPlatform', '$location',
     }
 ]);
 
-/**
- * MAIN CONTROLLER - handle inapp browser
- */
-BkpkApp.controller('HelpCtrl', ['$scope', function($scope) {
-
-}]);
-
 // formats a number as a latitude (e.g. 40.46... => "40°27'44"N")
 BkpkApp.filter('lat', function() {
     return function(input, decimals) {
@@ -642,20 +753,6 @@ BkpkApp.filter('lon', function() {
     }
 });
 
-
-/**
- * Menu item click directive - intercept, hide menu and go to new location
- */
-BkpkApp.directive('clickMenulink', function() {
-    return {
-        link: function($scope, element, attrs) {
-            element.on('click', function(scope) {
-                $scope.sideMenuController.toggleLeft();
-            });
-        }
-    }
-});
-
 /**
  * Handle Google Maps API V3+
  */
@@ -671,7 +768,7 @@ BkpkApp.directive("appMap", function($window, $http) {
     $window.calcTrip = function() {
         for (var i = 0; i < markersList.length; i++) {
             markedCities = markersList;
-			console.log(markersList[i].position.lat() );
+            console.log(markersList[i].position.lat());
             window.location.href = '#/app/calc';
             //  				  var m = markersList[i];
             //  		console.log(m);
@@ -835,3 +932,6 @@ BkpkApp.directive("appMap", function($window, $http) {
             } // end of link:
     }; // end of return
 });
+/**
+ *	Fim dos controllers de Mapa
+ */
