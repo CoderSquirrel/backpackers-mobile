@@ -7,6 +7,16 @@
             </ion-item>
         </ion-list>
 	<center><h1>{{error}}</h1></center>
-</ion-content>
+<br /><br />
+
+	<ion-list>
+
+            <ion-item ng-repeat="way in ways">
+                {{way.name}}: {{way.distance}} - {{way.currency}} {{way.price}}
+            </ion-item>
+        </ion-list>
+
+	</ion-content>
+
 </ion-view>
 

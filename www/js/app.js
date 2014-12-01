@@ -209,10 +209,7 @@ BkpkApp.controller('HeaderCtrl', function($scope) {
         content: '<i class="icon ion-plus-round"></i>',
         tap: function(e) {
             $scope.sideMenuController.toggleRight();
-            var sizeAf = myCities.length;
-            console.log(thisCity);
             myCities.push(thisCity);
-            console.log(myCities);
             alert("City added to your wish list");
 
         }
@@ -224,9 +221,6 @@ BkpkApp.controller('HeaderCtrl', function($scope) {
         tap: function(e) {
             $scope.sideMenuController.toggleRight();
             window.location.href = '#/app/myWish'
-            for (var i = 0; i < myCities.length; i++) {
-                console.log(myCities[i]);
-            }
         }
     }];
 
@@ -244,17 +238,17 @@ BkpkApp.controller('HeaderCtrl', function($scope) {
  */
 BkpkApp.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
 
-    //    var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/search?params[][continent]=europe&params[][name]=fl&maxItems=7&api_key=' + window.localStorage['apiKey'];
-    //
-    //    $http.get(url).success(function(data) {
-    //        $scope.cities = data.result;
-    //    });
-    //
-    //
-    //    $scope.cityInfo = function(id) {
-    //        idCity = id;
-    //        window.location.href = '#/app/city'
-    //    }
+    var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/search?params[][continent]=europe&params[][name]=fl&maxItems=7&api_key=' + window.localStorage['apiKey'];
+
+    $http.get(url).success(function(data) {
+        $scope.cities = data.result;
+    });
+
+
+    $scope.cityInfo = function(id) {
+        idCity = id;
+        window.location.href = '#/app/city'
+    }
 
 }]);
 
@@ -348,10 +342,9 @@ BkpkApp.controller('CityCtrl', function($scope, $http) {
 });
 
 BkpkApp.controller('MyWishCtrl', function($scope, $http) {
-    //    $scope.cities = myCities;
 
     if (myCities.length > 0) {
-        $scope.cities = myCities;
+        $scope.wishCities = myCities;
     } else {
         $scope.error = "No records found";
     }
@@ -389,30 +382,35 @@ BkpkApp.controller('ReviewListCtrl', function($scope, $http) {
 });
 
 BkpkApp.controller('CreateReviewCtrl', function($scope, $http) {
-   	$scope.review = 0;
-	var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/' + reviewCity + '?api_key=' + window.localStorage['apiKey'];
-        $http.get(url).success(function(data) {
-            $scope.city = data.result;
-    	});
+    $scope.review = 0;
+    var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/' + reviewCity + '?api_key=' + window.localStorage['apiKey'];
+    $http.get(url).success(function(data) {
+        $scope.city = data.result;
+    });
 
-	
-	
-	$scope.create = function(){
-		var url = "http://backpackers-vsnetwork.rhcloud.com/api/v1/review?api_key="+window.localStorage['apiKey'];
-		var params = { "params" : { "id_city" :  $scope.city.id_city, "stars" : this.review }};
-	        $http.post(url, params).
+
+
+    $scope.create = function() {
+        var url = "http://backpackers-vsnetwork.rhcloud.com/api/v1/review?api_key=" + window.localStorage['apiKey'];
+        var params = {
+            "params": {
+                "id_city": $scope.city.id_city,
+                "stars": this.review
+            }
+        };
+        $http.post(url, params).
         success(function(data) {
             if (data.status == 'OK') {
                 alert("Review saved");
-				 window.location.href = '#/app/reviews'
+                window.location.href = '#/app/reviews'
             }
 
         });
-		
-		
-		
-	}
-	
+
+
+
+    }
+
 });
 
 BkpkApp.controller('ReviewCtrl', ['$scope', '$http', function($scope, $http) {
@@ -463,12 +461,14 @@ BkpkApp.controller('SearchCityForReviewCtrl', ['$scope', '$http', function($scop
 
                 if (data.result.length < 1) {
                     $scope.error = "No records found";
-                }
+                } else {
+				$scope.error = "";
+				}
                 console.log($scope.searchCities);
             });
 
             $scope.cityInfo = function(id) {
-               reviewCity = id;
+                reviewCity = id;
                 window.location.href = "#/app/createReview";
 
             }
@@ -514,13 +514,35 @@ BkpkApp.controller('CityCtrlRV', function($scope, $http) {
  */
 
 BkpkApp.controller('ProfileCtrl', function($scope, $http) {
-    $scope.sport = 0;
+    $scope.key = window.localStorage['apiKey'];
+    $scope.user = window.localStorage['user'];
+
+
+    if (
+
+		window.localStorage['sport'] == null
+		|| window.localStorage['adventure'] == null
+		|| window.localStorage['art_and_culture'] == null
+		|| window.localStorage['entertainment'] == null
+		|| window.localStorage['landscape'] == null
+		|| window.localStorage['urban'] == null
+
+	) {
+	$scope.sport = 0;
     $scope.adventure = 0;
     $scope.art_and_culture = 0;
     $scope.entertainment = 0;
     $scope.landscape = 0;
     $scope.urban = 0;
-    $scope.key = window.localStorage['apiKey'];
+		$scope.label = "Preferences not registred"
+    } else {
+	$scope.sport = window.localStorage['sport'];
+    $scope.adventure = window.localStorage['adventure'];
+    $scope.art_and_culture = window.localStorage['art_and_culture'];
+    $scope.entertainment =  window.localStorage['entertainment'] ;
+    $scope.landscape = window.localStorage['landscape'] ;
+    $scope.urban = window.localStorage['urban'];
+	}
     console.log($scope.key);
     //		window.localStorage['apiKey'];
     $scope.save = function() {
@@ -535,16 +557,20 @@ BkpkApp.controller('ProfileCtrl', function($scope, $http) {
             }
         }
 
-        console.log(window.localStorage['apiKey']);
-        console.log(params);
         $http.post('http://backpackers-vsnetwork.rhcloud.com/api/v1/preference?api_key=' + window.localStorage['apiKey'], params).
         success(function(data) {
             console.log(data.status);
             console.log(data);
             if (data.status == 'OK') {
                 alert("Preferences saved");
-                console.log(data.result);
-            }
+$scope.label = "";
+			 window.localStorage['sport'] = $scope.sport;
+     window.localStorage['adventure'] = $scope.adventure ;
+    window.localStorage['art_and_culture'] =  $scope.art_and_culture;
+     window.localStorage['entertainment'] =  $scope.entertainment ;
+    window.localStorage['landscape']  = $scope.landscape ;
+    window.localStorage['urban'] =  $scope.urban;
+			}
 
         });
     }
@@ -576,7 +602,7 @@ BkpkApp.controller('LoginCtrl', function($scope, $http) {
                 console.log(data.status);
                 if (data.status == 'OK') {
                     window.localStorage['apiKey'] = data.result.api_key;
-                    window.localStorage['user'] = data.result;
+                    window.localStorage['user'] = data.result.name;
                     window.location.href = '#/app/home';
                 } else {
                     $scope.label = "Username or Password incorrect";
@@ -613,13 +639,21 @@ BkpkApp.controller('RegisterCtrl', ['$scope', '$http', '$interval', function($sc
                 console.log(data);
                 console.log(data.result);
                 window.localStorage['apiKey'] = data.result.api_key;
-                console.log("API key: " + window.localStorage['apiKey']);
+				$scope.label = "The user was registered. Wait while you are being redirected"
+			 document.getElementById("loadingIcon").style.visibility = "visible";
                 $scope.register = $interval(function() {
-                    console.log("registrado");
-                    window.location.href = '#/app/home';
-                }, 2000, 2, false);
+                    window.location.href = '#/app/login';
+                }, 3000, 2, false);
+
             } else {
-                $scope.label = "Sorry something wrong happened, try again.";
+                if (data.status == "ERROR") {
+                    if (data.message == "Duplicate entry") {
+                        $scope.label = "Username already in use.";
+                    } else {
+                        $scope.label = "Sorry something wrong happened, try again.";
+                    }
+                }
+
             }
             console.log("Close server..");
         });
@@ -635,7 +669,7 @@ BkpkApp.controller('LogoutCtrl', function($scope, $interval) {
         console.log("logout");
         window.localStorage['apiKey'] = null;
         window.location.href = '#/app/login';
-    }, 9000, 2, false);
+    }, 5000, 2, false);
 
 
 });
@@ -650,25 +684,39 @@ BkpkApp.controller('LogoutCtrl', function($scope, $interval) {
 
 
 BkpkApp.controller('CalcCtrl', function($scope, $http) {
-    var calcCidades = [];
-    for (var i = 0; i < markedCities.length; i++) {
-        var isB = false;
-        var cidade, pais;
-        console.log(markedCities[i].position.lat(), markedCities[i].position.lng());
-        var url = "http://backpackers-vsnetwork.rhcloud.com/api/v1/city/closest?api_key=" + window.localStorage['apiKey'] + "&params[latitude]=" + markedCities[i].position.lat() + "&params[longitude]=" + markedCities[i].position.lng() + "&sensor=true";
 
-        $http.get(url).success(function(data) {
-            console.log(data.result);
-            calcCidades.push(data.result[0]);
-            console.log(data.result[0]);
+	var cidades = getCities();
+//
+//	for(var i = 0; i <  cidades.length; i++){
+//		console.log(cidades[i]);
+//	}
+//
+	function getCities(){
+		 var calcCidades = [];
+		for (var i = 0; i < markedCities.length; i++) {
+			var isB = false;
+			var cidade, pais;
+			//        console.log(markedCities[i].position.lat(), markedCities[i].position.lng());
+			var url = "http://backpackers-vsnetwork.rhcloud.com/api/v1/city/closest?api_key=" + window.localStorage['apiKey'] + 					"&params[latitude]=" + markedCities[i].position.lat() + "&params[longitude]=" + markedCities[i].position.lng() + 					"&sensor=true";
 
-        });
-    }
+			$http.get(url).success(function(data) {
+//				console.log(data.result[0].id_city);
 
-    console.log(calcCidades);
+				calcCidades.push(data.result[0]);
+			});
+		}
+		$scope.markedCities = calcCidades;
+		trip();
+		return calcCidades;
+	}
 
-    $scope.markedCities = calcCidades;
 
+	function trip(){
+		console.log($scope.cidades.length);
+		var url ="http://backpackers-vsnetwork.rhcloud.com//api/v1/trip/request?api_key=123"
+
+
+	}
 });
 
 
