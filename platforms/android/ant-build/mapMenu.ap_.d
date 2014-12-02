@@ -45,6 +45,7 @@
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appReviews.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appSearchCityForReview.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appCityInfo.html \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appIndex.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appCreateReview.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appRegister.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appCityInfoReview.html \
@@ -57,8 +58,14 @@
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appWishlist.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/menu.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/pages/appLogin.html \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/pages/testeMapa.html \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/img/logo96.png \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/img/backpackers.png \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/img/logo.png \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/img/backpacker.png \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/img/bkpk.png \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/img/ionic.png \
+/home/jasane/projects/bkpck2/platforms/android/assets/www/img/bg.jpg \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/plugins/com.ionic.keyboard \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /home/jasane/projects/bkpck2/platforms/android/assets/www/plugins/com.ionic.keyboard/www \

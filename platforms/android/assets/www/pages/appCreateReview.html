@@ -2,7 +2,7 @@
 
     <ion-content has-header="true" padding="true">
         <div class="card" id="topofpage">
-
+<center><h2><i id="loadingIcon" class="icon ion-loading-a" style="visibility:visible" ></i> {{label}}</h2></center>
             <h4>{{city.name}}</h4>
             <h5>Country: {{city.country_name}} -  {{city.country_iso_2}}</h5>
             <h5>Alias: {{city.alias}}</h5>
@@ -21,8 +21,8 @@
 
         </div>
 <br />
-        <button class="button button-balanced" style="border-radius: 8px" style="display: block" ng-click="create()" menu-close>Save Review</button>
-
+     <center>   <button class="button button-energized" style="border-radius: 8px" style="display: block" ng-click="create()" menu-close>Save Review</button>
+</center>
     </ion-content>
 
 </ion-view>
