@@ -46,7 +46,7 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
      - State: app.home
      - Controller: HomeCtrl
 * appIndex.html
-     - State: 
+     - State: app.index
      - Controller:  SimpleCtrl
 * appList.html
     - State: app.list
@@ -72,9 +72,6 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
 * appRegister.html
      - State: app.register
      - Controller: RegisterCtrl
-* appReviewList.html
-     - State: app.Reviewlist
-     - Controller: ReviewListCtrl
 * appReviews.html
      - State: app.reviews
      - Controller: ReviewCtrl
@@ -91,7 +88,7 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
      - State: app.wishlist
      - Controller: WiLiCtrl
 * menu.html
-     - State: 
+     - State: app
      - Controller: HeaderCtrl
 
 
@@ -113,10 +110,10 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
 * CityCtrl: Show the city details;
 * MyWishCtrl : Show the cities in wishlist.
      - function: cityInfo :  saves the cityId and redirect to the app.city
-* ReviewListCtrl :  Show the cities result to the user seach
-     - function: cityInfo :  saves the reviewCity and redirect to the app.cityRv
 * CreateReviewCtrl: get the reviewCity build the url to search the city in the web server and add an review to it;
      - function: create : save the review in the webservice
 * ReviewCtrl: Show the cities that the user has reviewed
      - function: cityInfo :  saves the reviewCity and redirect to the app.cityRv
-* SearchCityForReviewCtrl
+* SearchCityForReviewCtrl: Validate the fields to user search the city
+     - function: search : validate the field and call the webservice to fill the list of cities
+     - function: cityInfo :  saves the reviewCity and redirect to the app.creteReview
