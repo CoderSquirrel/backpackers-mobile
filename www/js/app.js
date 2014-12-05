@@ -1127,6 +1127,7 @@ BkpkApp.controller('TripCtrl', function ($scope, $http, $state, $log) {
 				$scope.label = "There is no trip request for this user.";
 			}
 		} else if (data.status == "OK") {
+			$log.debug(data);
 			$scope.requests = data.result;
 		}
 		document.getElementById("loadingIcon").style.visibility = "hidden";
@@ -1145,7 +1146,7 @@ BkpkApp.controller('TripPlanCtrl', function ($scope, $http, $state, $log) {
 	var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/trip/plan?api_key=' + window.localStorage['apiKey'] + "&params[id_trip_plan]=" + tripPlanId;
 	//	$log.debug(url);
 	$http.get(url).success(function (data) {
-		//		$log.debug(data);
+				$log.debug(data);
 		if (data.status == "OK") {
 			$scope.plan = data.result;
 			$scope.itinerary = data.result.itinerary;
