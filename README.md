@@ -28,5 +28,9 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
 * Cordova  $ sudo npm install -g cordova
 * Ionic $ sudo npm install -g ionic
 
-### How to install  ###
+
+## Screens ##
+
+
+## Controllers ##
 
