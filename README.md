@@ -46,31 +46,60 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
      - State: 
      - Controller: HomeCtrl
 * appIndex.html
+     - State: 
      - Controller:  SimpleCtrl
 * appList.html
     - State: app.list
     - Controller: ListCtrl
 * appLogin.html
+     - State: 
+     - Controller: 
 * appLogout.html
+     - State: 
+     - Controller: 
 * appMap.html
+     - State: 
+     - Controller: 
 * appMapCalc.html
+     - State: 
+     - Controller: 
 * appMyWishlist.html
+     - State: 
+     - Controller: 
 * appProfile.html
+     - State: 
+     - Controller: 
 * appRegister.html
+     - State: 
+     - Controller: 
 * appReviewList.html
+     - State: 
+     - Controller: 
 * appReviews.html
+     - State: 
+     - Controller: 
 * appSearchCityForReview.html
+     - State: 
+     - Controller: 
 * appTripPlan.html
+     - State: 
+     - Controller: 
 * appTrips.html
+     - State: 
+     - Controller: 
 * appWishlist.html
+     - State: 
      - Controller: WiLiCtrl
 * menu.html
+     - State: 
      - Controller: HeaderCtrl
 
 
 ## Controllers ##
 * HeaderCtrl: Control the header, buttons and helps to control the user authentication.
+     - function:
 * MainCtrl: Controls the Home page and filling the initial trending list.
+     - function:
 * SimpleCtrl: Control the index page to redirect to login page or to register page.
      - function: login : redirect to the app.login
      - function register: redirect to the app.register
