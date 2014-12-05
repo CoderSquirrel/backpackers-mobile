@@ -117,3 +117,23 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
 * SearchCityForReviewCtrl: Validate the fields to user search the city
      - function: search : validate the field and call the webservice to fill the list of cities
      - function: cityInfo :  saves the reviewCity and redirect to the app.creteReview
+* CityCtrlRV: Shows the information fo the citie with the review the user has given
+* ProfileCtrl: Show the information of the user.
+     - function: save : save the preferences of the user in the web service.
+* LoginCtrl: Do the authentication.
+     - function: register : redirect to the registration page, app.register
+     - function: login : validate fields and if the login is successful redirect to app.home, else show the error message. Save the user api key in local storage to be used as parameter in all the requisitions.
+* RegisterCtrl: Register the user
+     - function: login : redirect to login page app.login
+     - function: register : validate fields and call the webservice to register user
+* LogoutCtrl : Do logout. Disconect the user, remove all the variables in local storage.
+* CalcCtrl : Search the cities chosen on map by lat and lng, store in a list and do the request.
+     - function: getCities : search the id of all the cities chosed by the user and call trip method
+     - function: trip : Do the trip request in the webservice
+
+* GpsCtrl : Controls the Map, provided by yafra.org/ in http://codepen.io/yafraorg/pen/jBEky
+     - Filters provided by yafra.org/ in http://codepen.io/yafraorg/pen/jBEky
+          - lat
+          - lon
+     - Directives provided by yafra.org/ in http://codepen.io/yafraorg/pen/jBEky
+          - appMap
