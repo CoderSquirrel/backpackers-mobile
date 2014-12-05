@@ -30,6 +30,27 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
 
 
 ## Screens ##
+* appAbout.html :
+* appCItyInfo.html
+* appCityInfoReview.html
+* appCreateReview.html
+* appHome.html
+* appIndex.html
+* appList.html
+* appLogin.html
+* appLogout.html
+* appMap.html
+* appMapCalc.html
+* appMyWishlist.html
+* appProfile.html
+* appRegister.html
+* appReviewList.html
+* appReviews.html
+* appSearchCityForReview.html
+* appTripPlan.html
+* appTrips.html
+* appWishlist.html
+* menu.html
 
 
 ## Controllers ##
