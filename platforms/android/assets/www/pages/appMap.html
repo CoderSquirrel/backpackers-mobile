@@ -2,22 +2,19 @@
 <ion-content has-header="true" scroll="false">
 	<center>Important! The first city you choose is the Origin City.</center>
 <!-- map directive-->
-<app-map style="height:80%;margin:2px;"
+<app-map style="height:85%;margin:1px;"
     center="basel"
-    zoom="10"
+    zoom="15"
     markers="whoiswhere"
   > 
 </app-map>
+
+</ion-content>
 <div class="bar bar-footer" >
 	<div class="row">
   <div class="col"><a class="button button-full button-positive" onclick="calcTrip()">Calc Trip</a></div>
+  <div class="col"><a class="button button-full button-dark" >Undo Last City</a></div>
   <div class="col"><a class="button button-full button-assertive" onclick="clearMarks()">Erase Marks</a></div>
 </div>
-
-
-
 </div>
-	   <br/>
-</ion-content>
-
 </ion-view>
