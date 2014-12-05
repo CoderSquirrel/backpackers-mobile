@@ -1,0 +1,31 @@
+<ion-view title="'Details'" left-buttons="leftButtons">
+
+    <ion-content has-header="true" padding="true">
+ <div class="card" id="topofpage">
+  
+<h4>{{city.name}}</h4>
+	 <h5>Country: {{city.country_name}} -  {{city.country_iso_2}}</h5>
+	<h5>Alias: {{city.alias}}</h5>	
+	<h5>Continent: {{city.continent}}</h5>
+	<h5>Latitude: {{city.latitude}}</h5>
+	<h5>Longitude: {{city.longitude}}</h5>
+	<h5>Description: {{city.description}}</h5>
+	 <div id="review" ng-bind-html="rev"></div>
+
+</div>
+<!--
+
+        <div class="list card">
+            <div class="item">
+                <h2>{{city[3]}}</h2>
+            </div>
+            <a class="item item-icon-left assertive" href="#/app/person/{{user.id}}/mutualfriends">
+                <i class="icon ion-ios7-people"></i>
+               {{city.[4]}}
+            </a>
+        </div>
+-->
+		{{add}}
+    </ion-content>
+
+</ion-view>
