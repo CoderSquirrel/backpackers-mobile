@@ -40,7 +40,6 @@ BkpkApp.config(['$stateProvider', '$urlRouterProvider',
 				views: {
 					'menuContent': {
 						templateUrl: 'pages/appAbout.html',
-						controller: 'MainCtrl'
 					}
 				}
 			})
@@ -94,15 +93,6 @@ BkpkApp.config(['$stateProvider', '$urlRouterProvider',
 					'menuContent': {
 						templateUrl: 'pages/appList.html',
 						controller: 'ListCtrl'
-					}
-				}
-			})
-			.state('app.Reviewlist', {
-				url: '/Reviewlist',
-				views: {
-					'menuContent': {
-						templateUrl: 'pages/appReviewList.html',
-						controller: 'ReviewListCtrl'
 					}
 				}
 			})
@@ -201,14 +191,6 @@ BkpkApp.config(['$stateProvider', '$urlRouterProvider',
 						controller: 'SimpleCtrl'
 					}
 				}
-			}).state('app.teste', {
-				url: "/teste",
-				views: {
-					'menuContent': {
-						templateUrl: 'pages/teste.html',
-						controller: 'Teste'
-					}
-				}
 			});
 
 
@@ -301,18 +283,6 @@ BkpkApp.controller('SimpleCtrl', function ($scope, $state) {
 });
 
 
-BkpkApp.controller('Teste', function ($scope) {
-	//BkpkApp.controller('Teste',function($scope, $ionicPopup, $timeout) {
-	//   $scope.showAlert = function() {
-	//     var alertPopup = $ionicPopup.alert({
-	//       title: 'Don\'t eat that!',
-	//       template: 'It might taste good'
-	//     });
-	//     alertPopup.then(function(res) {
-	//       console.log('Thank you for not eating my delicious ice cream cone');
-	//     });
-	//   };
-});
 
 /**
  * Menu item click directive - intercept, hide menu and go to new location
@@ -355,7 +325,6 @@ BkpkApp.controller("WiLiCtrl", function ($scope, $http, $state) {
 BkpkApp.controller('ListCtrl', function ($scope, $http, $state) {
 
 	$http.get(myUrl).success(function (data) {
-		console.log(data);
 		if (data.totalNumberOfItems > 0) {
 			if (data.status == "ERROR") {
 				if (data.message == "API key not found.") {
@@ -484,10 +453,8 @@ BkpkApp.controller('CreateReviewCtrl', function ($scope, $http, $state, $log) {
 });
 
 BkpkApp.controller('ReviewCtrl', function ($scope, $http, $state) {
-	console.log("ReviewCtrl");
 	var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/reviews?api_key=' + window.localStorage['apiKey'];
 	$http.get(url).success(function (data) {
-		console.log(data);
 		document.getElementById("loadingIcon").style.visibility = "hidden";
 		if (data.status == "ERROR") {
 			if (data.message == "API key not found.") {
@@ -1150,9 +1117,9 @@ BkpkApp.directive("appMap", function ($window, $http, $state, $q, $log) {
 
 BkpkApp.controller('TripCtrl', function ($scope, $http, $state, $log) {
 	var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/trip/request?api_key=' + window.localStorage['apiKey'];
-	console.log(url);
+	//	console.log(url);
 	$http.get(url).success(function (data) {
-		console.log(data);
+		//		console.log(data);
 		if (data.status == "ERROR") {
 			if (data.message == "API key not found.") {
 				$state.go("app.login");
