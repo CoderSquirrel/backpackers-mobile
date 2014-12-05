@@ -16,6 +16,11 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
 * Markers
 * Cities Lat and Lng
 
+## YAFRA ##
+
+ * Google Maps integration with ionic side menu. Found [here](http://codepen.io/yafraorg/pen/jBEky)
+ 
+
 ## Backpackers API ##
 * API key
 * Authentication
@@ -137,3 +142,13 @@ Backpackers app is an Web Mobile App developed using Ionic Framework.
           - lon
      - Directives provided by yafra.org/ in http://codepen.io/yafraorg/pen/jBEky
           - appMap
+     - function: clearMarks : clear all the marks in the map
+     - function: calcTrip : store the cities marked and redirect to app.calc
+     - function: undo : undo the last mark
+     - function: addMarker : add a new mark in the map on the location user tap
+     - function: getMarkTitle: return the title to be added with the mark
+     - function: printMarks : only used for debug, print all the marks in the map
+* TripCtrl: request for the web service and show the trips requested by user
+     - function: tripPlan : store tripId and redirect to app.tripPlan
+* TripPlanCtrl : shows the details to the trip plan
+
