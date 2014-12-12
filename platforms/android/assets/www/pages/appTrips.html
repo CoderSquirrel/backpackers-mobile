@@ -6,9 +6,9 @@
 				{{label}}
          </h1>
 		</center>
-		<ion-list>
-			<ion-item ng-repeat="req in requests" ng-click="tripPlan({{req.id_trip_plan}})">
-				{{req.id_trip_request}} - {{req.status}} - {{req.id_trip_plan}}
+		<ion-list class = "wrapping-list">
+			<ion-item ng-repeat="req in requests" ng-click="tripPlan({{req.id_trip_plan}})" >
+				Request id: {{req.id_trip_request}}. Status: {{req.status}}. Progress: {{req.progress_message}}, percent {{req.progress_percent}}%
 			</ion-item>
 		</ion-list>
 		<center>

@@ -5,7 +5,7 @@
             <i id="loadingIcon" class="icon ion-loading-a" ></i>
          </h1>
       </center>
-      <ion-list>
+      <ion-list class="wrapping-list">
          <ion-item ng-repeat="city in foundCities" ng-click="wishCityInfo({{city.id_city}})">
             {{city.name}}
          </ion-item>
