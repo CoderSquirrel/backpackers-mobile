@@ -251,7 +251,7 @@ BkpkApp.controller('HeaderCtrl', function ($scope, $state) {
  */
 BkpkApp.controller('MainCtrl', function ($scope, $http, $state, $window, $log) {
 
-	var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/search?params[][continent]=europe&params[][name]=fl&maxItems=7&api_key=' + window.localStorage['apiKey'];
+	var url = 'http://backpackers-vsnetwork.rhcloud.com/api/v1/city/trending?api_key=' + window.localStorage['apiKey'];
 
 
 	$http.get(url).success(function (data) {
