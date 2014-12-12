@@ -11,13 +11,15 @@
 				Total Cost: {{plan.total_cost}} €
 			</div>
 
-			<ion-list id="myList" style="visibility:hidden">
+			<ion-list id="myList" style="visibility:hidden" class="wrapping-list">
 				<ion-item>
 					Itinerary
 				</ion-item>
 				<ion-item ng-repeat="rout in itinerary">
+					<p>Origin: {{rout.originCity.name}}</p>
+					<p>Destination: {{rout.destinationCity.name}}</p>
+					<b>Cost: {{rout.cost}} €</b>
 
-					<b>Cost {{rout.cost}} €</b> From {{rout.originCity.name}} to {{rout.destinationCity.name}}.
 				</ion-item>
 			</ion-list>
 

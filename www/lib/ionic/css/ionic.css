@@ -4936,7 +4936,7 @@ legend {
 label, input, button, select, textarea {
   font-weight: normal;
   font-size: 14px;
-  line-height: 1.42857; }
+  line-height: 1.2; }
 
 input, button, select, textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
